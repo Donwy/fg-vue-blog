@@ -1,52 +1,50 @@
 <template>
-  <div class="container" @mouseenter="Imouseenter" @mousemove="Imousemove" @mouseleave="Imouseleave">
-      <div class="layer"><img src="../assets/1.png"
-                              data-height="250" data-width="3000" height="290" width="3483"
-                              style="filter: blur(4px); transform: translate(0px, 0px) rotate(0deg);"></div>
-      <div class="layer"><img :src="eyeImg"
-                              data-height="275" data-width="3000" height="191" width="2090"
-                              style="transform: translate(0px, 0px) rotate(0deg); filter: blur(0px);"></div>
-      <div class="layer"><img src="../assets/3.png"
-                              data-height="250" data-width="3000" height="290" width="3483"
-                              style="transform: translate(-58.0645px, 0px) rotate(0deg); filter: blur(1px);"></div>
-      <div class="layer"><img src="../assets/4.png"
-                              data-height="250" data-width="3000" height="174" width="2090"
-                              style="transform: translate(0px, 4.87742px) rotate(0deg); filter: blur(4px);"></div>
-      <div class="layer"><img src="../assets/5.png"
-                              data-height="275" data-width="3000" height="191" width="2090"
-                              style="transform: translate(0px, -2.09032px) rotate(0deg); filter: blur(5px);"></div>
-      <div class="layer"><img src="../assets/6.png"
-                              data-height="275" data-width="3000" height="207" width="2264"
-                              style="filter: blur(6px); transform: translate(0px, 0px) rotate(0deg);"></div>
-      <div class="layer"><img src="../assets/2-bi.png"
-                              data-height="275" data-width="3000" height="207" width="2264"
-                              style="filter: blur(6px); transform: translate(0px, 0px) rotate(0deg); display: none"></div>
-      <div class="layer"><img src="../assets/2-zha.png"
-                              data-height="275" data-width="3000" height="207" width="2264"
-                              style="filter: blur(6px); transform: translate(0px, 0px) rotate(0deg); display: none"></div>
+  <div>
+      <div class="container" @mouseenter="Imouseenter" @mousemove="Imousemove" @mouseleave="Imouseleave">
+          <div class="layer"><img src="../assets/1.png"
+                                  data-height="250" data-width="3000" height="290" width="3483"
+                                  style="filter: blur(4px); transform: translate(0px, 0px) rotate(0deg);"></div>
+          <div class="layer"><img :src="eyeImg"
+                                  data-height="275" data-width="3000" height="191" width="2090"
+                                  style="transform: translate(0px, 0px) rotate(0deg); filter: blur(0px);"></div>
+          <div class="layer"><img src="../assets/3.png"
+                                  data-height="250" data-width="3000" height="290" width="3483"
+                                  style="transform: translate(-58.0645px, 0px) rotate(0deg); filter: blur(1px);"></div>
+          <div class="layer"><img src="../assets/4.png"
+                                  data-height="250" data-width="3000" height="174" width="2090"
+                                  style="transform: translate(0px, 4.87742px) rotate(0deg); filter: blur(4px);"></div>
+          <div class="layer"><img src="../assets/5.png"
+                                  data-height="275" data-width="3000" height="191" width="2090"
+                                  style="transform: translate(0px, -2.09032px) rotate(0deg); filter: blur(5px);"></div>
+          <div class="layer"><img src="../assets/6.png"
+                                  data-height="275" data-width="3000" height="207" width="2264"
+                                  style="filter: blur(6px); transform: translate(0px, 0px) rotate(0deg);"></div>
+          <div class="layer"><img src="../assets/2-bi.png"
+                                  data-height="275" data-width="3000" height="207" width="2264"
+                                  style="filter: blur(6px); transform: translate(0px, 0px) rotate(0deg); display: none"></div>
+          <div class="layer"><img src="../assets/2-zha.png"
+                                  data-height="275" data-width="3000" height="207" width="2264"
+                                  style="filter: blur(6px); transform: translate(0px, 0px) rotate(0deg); display: none"></div>
+      </div>
+      <Winter></Winter>
   </div>
 </template>
 
 <script>
-import img1 from "../assets/1.png";
 import img2 from "../assets/2.png";
-import img3 from "../assets/3.png";
-import img4 from "../assets/4.png";
-import img5 from "../assets/5.png";
-import img6 from "../assets/6.png";
 import img2bi from "../assets/2-bi.png";
 import img2zha from "../assets/2-zha.png";
+import Winter from './Winter'
 
 
 export default {
-  name: 'HelloWorld',
+  name: 'Autumn',
+  components: {Winter},
   data(){
     return{
       imgs: [],
       eyeImg: img2,
       eyeArr:[img2zha, img2bi, img2zha ,img2],
-      i: 0
-
     }
   },
 
@@ -54,7 +52,7 @@ export default {
     this.imgs = document.querySelectorAll('img');
     this.flash();
   },
-  methods: {  
+  methods: {
     Imouseenter: function (e) {
       //获取鼠标在移入时的偏移
       this.x = e.clientX;
@@ -166,15 +164,23 @@ export default {
     },
 
     flash: function () {
-      this.eyeImg = img2;
-      let that = this;
-      setInterval(function(){
-        that.i++;
-        that.eyeImg = that.eyeArr[that.i];
-        if(that.i >= that.eyeArr.length-1) {
-          that.i=0;
-        }
-      }, 1000)
+      setInterval(() => {
+        setTimeout(() => {
+          this.eyeImg = img2zha;
+        });
+
+        setTimeout(() => {
+          this.eyeImg = img2bi;
+        }, 100);
+
+        setTimeout(() => {
+          this.eyeImg = img2zha;
+        }, 200);
+
+        setTimeout(() => {
+          this.eyeImg = img2;
+        }, 300);
+      }, 3000);
     }
   }
 }
