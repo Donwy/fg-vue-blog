@@ -108,12 +108,13 @@
         for (let n = 0; n < offsetTopArr.length; n++) {
           // 如果 scrollTop 大于等于第n个元素的 offsetTop 则说明 n-1 的内容已经完全不可见
           // 那么此时导航索引就应该是n了
-          // 因为div的实际高度为600 + padding上下20 为640，所以当滚动远大于div的一半时可视为下一个索引
+          // 因为div的实际高度为600 + padding上下20 为640，
+          // 所以当滚动远大于第n个div的offsettop + div的一半时（我就是想用400）可视为点击跳到下一个索引
           console.log(scrollTop)
           if (scrollTop >= offsetTopArr[n] && scrollTop < offsetTopArr[n] + 320) {
             navIndex = n;
-          } else if (scrollTop >= offsetTopArr[n] +330) {
-            navIndex = n+1;
+          } else if (scrollTop >= offsetTopArr[n] + 400) {
+            navIndex = n + 1;
           }
         }
         this.active = navIndex
