@@ -111,9 +111,9 @@
           // 因为div的实际高度为600 + padding上下20 为640，
           // 所以当滚动远大于第n个div的offsettop + div的一半时（我就是想用400）可视为点击跳到下一个索引
           console.log(scrollTop)
-          if (scrollTop >= offsetTopArr[n] && scrollTop < offsetTopArr[n] + 320) {
+          if (scrollTop >= offsetTopArr[n] && scrollTop < offsetTopArr[n] + (offsetTopArr[n+1] - offsetTopArr[n])/2) {
             navIndex = n;
-          } else if (scrollTop >= offsetTopArr[n] + 400) {
+          } else if (scrollTop >= offsetTopArr[n] + (offsetTopArr[n+1] - offsetTopArr[n])/2) {
             navIndex = n + 1;
           }
         }
